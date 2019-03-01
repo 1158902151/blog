@@ -9,7 +9,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "jacobcyl/ali-oss-storage": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -25,7 +26,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files":[
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

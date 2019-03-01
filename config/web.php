@@ -7,5 +7,6 @@
  */
 return [
 	"web_site"=>"云辉印象-首页",
-	"gonggao"=>"拥有诗意的心态,才能拥有诗意的生活"
+	"gonggao"=>"拥有诗意的心态,才能拥有诗意的生活",
+	"web_key"=>"xieqiyong2019"
 ];
