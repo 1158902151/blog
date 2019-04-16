@@ -7,7 +7,6 @@
     <link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/res/layui/css/layui.css">
     <link rel="stylesheet" href="/res/static/css/mian.css">
-    <link rel="stylesheet" href="/edit/css/editormd.preview.css" />
 </head>
 <body class="lay-blog">
 <div class="header">
@@ -53,33 +52,11 @@
 <script src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('static/bootstrap/bootstrap.min.js') }}"></script>
 <script src="/res/layui/layui.js"></script>
-<script type="text/javascript" src="{{ URL::asset('edit/editormd.js') }}"></script>
-<script src="/edit/lib/marked.min.js"></script>
-<script src="/edit/lib/prettify.min.js"></script>
-<script src="/edit/lib/raphael.min.js"></script>
-<script src="/edit/lib/underscore.min.js"></script>
-<script src="/edit/lib/sequence-diagram.min.js"></script>
-<script src="/edit/lib/flowchart.min.js"></script>
-<script src="/edit/lib/jquery.flowchart.min.js"></script>
-<script src="/edit/editormd.js"></script>
 
 <script>
     layui.config({
         base: '/res/static/js/'
     }).use('blog');
-
-    $("#test-editormd").html('<textarea id="appendTest"></textarea>');
-    var content=$("#content").val();//获取需要转换的内容
-    $("#appendTest").val(content);//将需要转换的内容加到转换后展示容器的textarea隐藏标签中
-    //转换开始,第一个参数是上面的div的id
-    editormd.markdownToHTML("test-editormd", {
-        htmlDecode: "style,script,iframe", //可以过滤标签解码
-        emoji: true,
-        taskList:true,
-        tex: true,               // 默认不解析
-        flowChart:true,         // 默认不解析
-        sequenceDiagram:true,  // 默认不解析
-    });
     /***记录查看人数**/
     $(document).ready(function() {
         var id      = "<?php echo $detail->id;?>";
