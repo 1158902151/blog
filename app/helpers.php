@@ -479,21 +479,26 @@ function clientEnv($userAgent=null) {
  * @return string
  */
 if(!function_exists('getNowTimeLength')) {
-    function getNowTimeLength($time)
-    {
-        $str = "";
-        $length = round((time() - $time)/(3600),2);
-        if($length >= 24){
-            $str = ceil($length/24).'天前';
-        }
-        if($length < 24 && $length >= 1){
-            $str = round($length).'小时前';
-        }
-        if($length < 1){
-            $str = ceil($length*60).'分钟前';
-        }
-        return $str;
-    }
+	function getNowTimeLength($time)
+	{
+		$str = "";
+		$length = round((time() - $time)/(3600),2);
+		if($length >= 24){
+			$str = ceil($length/24).'天前';
+			if($str >= 30){
+				$patterns = "/\d+/";
+				preg_match_all($patterns,$str,$arr);
+				$str = floor($arr[0][0]/30).'个月前';
+			}
+		}
+		if($length < 24 && $length >= 1){
+			$str = round($length).'小时前';
+		}
+		if($length < 1){
+			$str = ceil($length*60).'分钟前';
+		}
+		return $str;
+	}
 }
 
 /**

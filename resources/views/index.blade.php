@@ -11,7 +11,8 @@
     <div class="header">
         <ul class="layui-nav layui-bg-cyan">
             <li class="layui-nav-item"><a href="javascript:void(0);">云辉印象</a></li>
-            <li class="layui-nav-item layui-this"><a href="">首页</a></li>
+            <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
+            <li class="layui-nav-item"><a href="/swoole/chat">SWOOLE</a></li>
         </ul>
     </div>
     <div class="container-wrap">
@@ -43,11 +44,16 @@
         </p>
         <p><span>人生就是一场修行</span></p>
     </div>
+    <script src="/js/jquery.min.js"></script>
     <script src="/res/layui/layui.js"></script>
     <script>
         layui.config({
             base: '/res/static/js/'
         }).use('blog');
+        $(".layui-nav-item").click(function(){
+            $(".layui-nav-item").removeClass("layui-this");
+            $(this).addClass("layui-this");
+        })
     </script>
     </body>
     </html>
