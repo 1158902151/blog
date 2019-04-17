@@ -12,6 +12,7 @@ use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class IndexController extends Controller
 {
@@ -58,5 +59,18 @@ class IndexController extends Controller
 			return response()->json(['code'=>400,'msg'=>"回复失败"]);
 		}
 		return response()->json(['code'=>200,'msg'=>"回复成功"]);
+	}
+
+	public function sub(Request $request)
+	{
+		Redis::subscribe(['channel'], function ($message) {
+			echo $message;
+		});
+	}
+
+	public function push(Request $request)
+	{
+		$content = $request->contents;
+		Redis::publish('channel', $content);
 	}
 }

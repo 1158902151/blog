@@ -18,9 +18,6 @@
     <div class="container-wrap">
         <div class="container">
             <div class="contar-wrap">
-                <h4 class="item-title">
-                    <p><i class="layui-icon layui-icon-speaker"></i>公告：<span><?php echo config('web.gonggao');?></span></p>
-                </h4>
 				<?php foreach($aic_list as $k => $v){?>
                     <div class="item">
                         <div class="item-box  layer-photos-demo1 layer-photos-demo">
@@ -42,7 +39,6 @@
             <span><a href="http://www.layui.com" target="_blank">或许期待一次绽放</a></span>
             <span>MIT license</span>
         </p>
-        <p><span>人生就是一场修行</span></p>
     </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/res/layui/layui.js"></script>

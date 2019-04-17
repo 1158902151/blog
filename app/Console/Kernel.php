@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+		\App\Console\Commands\RedisSub::class,
+		\App\Console\Commands\RedisPub::class
     ];
 
     /**
