@@ -18,20 +18,13 @@ class IndexController extends Controller
 {
 	public function index(Request $request)
 	{
-		$pages = $request->input('page',1);
-		$aic_list = Cache::get('aic_list_'.$pages);
-		if(!$aic_list){
-			$aic_list = Articles::where('uid',16)->where('is_top',1)->orderBy('id','DESC')->paginate(5);
-			Cache::put('aic_list',$aic_list,120);
-		}
 
-		return view('index',['aic_list'=>$aic_list]);
+		return view('index');
 	}
 
 	public function detail(Request $request)
 	{
 		$id = $request->id;
-		$id = get_key_val($id);
 		if(!$id){
 			return redirect('/');
 		}
@@ -72,5 +65,16 @@ class IndexController extends Controller
 	{
 		$content = $request->contents;
 		Redis::publish('channel', $content);
+	}
+
+	public function articleLists(Request $request)
+	{
+		$pages = $request->input('page',1);
+		$page = 5*($pages - 1);
+		$count = Articles::where('uid',16)->where('is_top',1)->count();
+		$aic_list = Articles::where('uid',16)->where('is_top',1)->orderBy('id','DESC')->offset($page)->limit(5)->get()->toArray();
+
+		$data = array('code'=>0, 'msg'=>'', 'count'=>$count, 'data'=>$aic_list);
+		return response()->json($data);
 	}
 }

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/res/layui/css/layui.css">
         <link rel="stylesheet" href="/res/static/css/mian.css">
+        <link rel="stylesheet" href="/res/layui/css/modules/layer/default/layer.css">
     </head>
     <body class="lay-blog">
     <div class="header">
@@ -17,32 +18,32 @@
     </div>
     <div class="container-wrap">
         <div class="container">
-            <div class="contar-wrap">
-				<?php foreach($aic_list as $k => $v){?>
-                    <div class="item">
-                        <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                            <h3><a href="/articles/post/<?php echo set_key_val($v['id']);?>.html"><?php echo $v['title'];?></a></h3>
-                            <h5>发布于：<span><?php echo getNowTimeLength(strtotime($v['created_at']));?></span></h5>
-                            <img src="<?php echo $v['img_url'];?>" alt="">
-                        </div>
-                    </div>
-                <?php }?>
+            <div class="contar-wrap" id="ari-list">
+
             </div>
-            <div class="item-btn">
-                {{ $aic_list->links('vendor.pagination.simple-default') }}
-            </div>
+            <div style="display: none;" id="demo0"></div>
         </div>
     </div>
     <div class="footer">
         <p>
-            <span>&copy; 2018</span>
+            <span>&copy; 2019</span>
             <span><a href="http://www.layui.com" target="_blank">或许期待一次绽放</a></span>
             <span>MIT license</span>
         </p>
     </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/res/layui/layui.js"></script>
+    <script src="/res/layui/lay/modules/layer.js"></script>
     <script>
+        window.onload = function(){
+            //弹出一个loading层
+                var ii = layer.load();
+                //此处用setTimeout演示ajax的回调
+                setTimeout(function(){
+                    layer.close(ii);
+                }, 1000);
+
+        }
         layui.config({
             base: '/res/static/js/'
         }).use('blog');
@@ -50,6 +51,47 @@
             $(".layui-nav-item").removeClass("layui-this");
             $(this).addClass("layui-this");
         })
+
+        var  total = 0;
+        $.ajax({
+            url: "/article/lists",
+            async:false,
+            type:"get",
+            success: function(obj){
+                total = obj.count; //取到数据总条数
+            }
+        });
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+
+            //调用分页
+            laypage.render({
+                elem: 'demo0'
+                ,count: total
+                ,jump: function(obj){
+                    $.ajax({
+                        url: "/article/lists",
+                        type:"get",
+                        data:{pageSize:5,page:obj.curr},
+                        success: function(lists){
+                            var html = "";
+                            layui.each(lists.data, function(index, item){
+                               html += `<div class="item">
+                                            <div class="item-box  layer-photos-demo1 layer-photos-demo">
+                                            <h3><a href="/articles/post/`+item.id+`.html">`+item.title+`</a></h3>
+                                            <h5>发布于：<span>`+item.created_at+`</span></h5>
+                                            <img src="`+item.img_url+`" alt="">
+                                            </div>
+                                        </div>`;
+                            });
+                            $("#ari-list").html(html);
+                            $("#demo0").show();
+                        }
+                    });
+                }
+            });
+        });
     </script>
     </body>
     </html>
