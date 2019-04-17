@@ -35,15 +35,7 @@
     <script src="/res/layui/layui.js"></script>
     <script src="/res/layui/lay/modules/layer.js"></script>
     <script>
-        window.onload = function(){
-            //弹出一个loading层
-                var ii = layer.load();
-                //此处用setTimeout演示ajax的回调
-                setTimeout(function(){
-                    layer.close(ii);
-                }, 1000);
-
-        }
+        var ii = "";
         layui.config({
             base: '/res/static/js/'
         }).use('blog');
@@ -70,6 +62,7 @@
                 elem: 'demo0'
                 ,count: total
                 ,jump: function(obj){
+                    ii = layer.load();
                     $.ajax({
                         url: "/article/lists",
                         type:"get",
@@ -87,6 +80,7 @@
                             });
                             $("#ari-list").html(html);
                             $("#demo0").show();
+                            layer.close(ii)
                         }
                     });
                 }
