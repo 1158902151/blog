@@ -23,12 +23,7 @@
                 <div class="item-box  layer-photos-demo1 layer-photos-demo">
                     <h3><a href="javascript:void(0);"><?php echo $detail->title;?></a></h3>
                     <h5>发布于：<span><?php echo getNowTimeLength(strtotime($detail->created_at));?></span></h5>
-                    <div id="test-editormd">
-
-                    </div>
-                    <textarea id="content" cols="30" rows="10"  style="display:none;">
                         <?php echo $detail->content?>
-                    </textarea>
                     <img src="<?php echo $detail->img_url;?>" alt="">
                     <div class="count layui-clear">
                         <span class="pull-left">阅读 <span id="view"><?php echo $detail->view;?></span></span>
