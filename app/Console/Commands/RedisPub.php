@@ -38,7 +38,7 @@ class RedisPub extends Command
      */
     public function handle()
     {
-		$server = new swoole_websocket_server("0.0.0.0", 9501);
+		$server = new \swoole_websocket_server("0.0.0.0", 9501);
 
 		$server->on('workerStart', function ($server, $workerId) {
 			$client = new \swoole_redis;
