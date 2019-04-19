@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/res/layui/css/layui.css">
         <link rel="stylesheet" href="/res/static/css/mian.css">
-        <link rel="stylesheet" href="/res/layui/css/modules/layer/default/layer.css">
+        {{--<link rel="stylesheet" href="/res/layui/css/modules/layer/default/layer.css">--}}
     </head>
     <body class="lay-blog">
     <div class="header">
@@ -33,7 +33,7 @@
     </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/res/layui/layui.js"></script>
-    <script src="/res/layui/lay/modules/layer.js"></script>
+    {{--<script src="/res/layui/lay/modules/layer.js"></script>--}}
     <script>
         var ii = "";
         layui.config({
