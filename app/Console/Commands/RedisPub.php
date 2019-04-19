@@ -38,6 +38,34 @@ class RedisPub extends Command
      */
     public function handle()
     {
-		Redis::publish('channel', "1231313");
+		$server = new swoole_websocket_server("0.0.0.0", 9501);
+
+		$server->on('workerStart', function ($server, $workerId) {
+			$client = new \swoole_redis;
+			$client->on('message', function (\swoole_redis $client, $result) use ($server) {
+				if ($result[0] == 'message') {
+					foreach($server->connections as $fd) {
+						$server->push($fd, $result[1]);
+					}
+				}
+			});
+			$client->connect('39.107.122.217', 6379, function (\swoole_redis $client, $result) {
+				$client->subscribe('msg_0');
+			});
+		});
+
+		$server->on('open', function ($server, $request) {
+
+		});
+
+		$server->on('message', function (\swoole_websocket_server $server, $frame) {
+			$server->push($frame->fd, "hello");
+		});
+
+		$server->on('close', function ($serv, $fd) {
+
+		});
+
+		$server->start();
     }
 }
