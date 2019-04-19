@@ -42,7 +42,7 @@ class Swoole extends Command
 		$server->on('message', function (\swoole_websocket_server $server, $frame) {
 			foreach($server->connections as $key => $fd) {
 				$user_message = $frame->data;
-				$uuid = mt_rand(1,99999);
+				$uuid    = mt_rand(1,99999);
 				$message = json_encode(array('count'=>count($server->connections),'uuid'=>$uuid,'data'=>$user_message,'time'=>date('Y-m-d H:i:s',time())));
 				$server->push($fd, $message);
 			}

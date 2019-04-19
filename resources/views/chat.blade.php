@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title><?php echo $title;?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/res/layui/css/layui.css">
     <link rel="stylesheet" href="/res/static/css/mian.css">
 </head>
@@ -13,7 +12,15 @@
     <ul class="layui-nav layui-bg-cyan">
         <li class="layui-nav-item"><a href="javascript:void(0);">云辉印象</a></li>
         <li class="layui-nav-item"><a href="/">首页</a></li>
-        <li class="layui-nav-item layui-this"><a href="/swoole/chat">SWOOLE</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">实战</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/swoole/chat">swoole socket</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd class="layui-this"><a href="">选中项</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
     </ul>
 </div>
 <div class="container-wrap">
