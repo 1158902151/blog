@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title><?php echo $title;?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{--<link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
+    <link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/res/layui/css/layui.css">
     <link rel="stylesheet" href="/res/static/css/mian.css">
 </head>
