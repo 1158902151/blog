@@ -54,7 +54,7 @@ class Swoole extends Command
 		$server->on('message', function (\swoole_websocket_server $server, $frame) {
 			$fd   = $frame->fd;
 			$data = $frame->data;
-			$message = "[用户{$fd}]:{$data}";
+			$message = "【用户{$fd}】:{$data}";
 			//向所有人广播
 			foreach ($server->connections as $key => $value) {
 				if($frame->fd != $value){
