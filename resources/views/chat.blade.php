@@ -71,7 +71,7 @@
         link();
     })
     function link () {
-        ws = new WebSocket("ws://192.168.152.187:9501");//连接服务器
+        ws = new WebSocket("ws://39.107.122.217:9501");//连接服务器
         ws.onopen = function(event){
             var msg = "<p>【欢迎您进入房间】</p>";
             $("#msgArea").append(msg);
