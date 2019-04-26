@@ -27,7 +27,6 @@
         <div class="contar-wrap">
             <div class="item">
                 <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                    当前在线人数<b id="count"></b>
                     <div>
                         <div style="width: 600px;height: 500px;background-color: #5FB878">
                             <div id="msgArea" style="width:100%;height: 100%;text-align:start;resize: none;font-size: 16px;overflow-y: scroll"></div>
@@ -71,17 +70,14 @@
     $(function(){
         link();
     })
-
     function link () {
-        ws = new WebSocket("ws://39.107.122.217:9501");//连接服务器
+        ws = new WebSocket("ws://192.168.152.187:9501");//连接服务器
         ws.onopen = function(event){
-            var msg = "<p>欢迎您进入房间</p>";
+            var msg = "<p>【欢迎您进入房间】</p>";
             $("#msgArea").append(msg);
         };
         ws.onmessage = function (event) {
-            var a = JSON.parse(event.data);
-            $("#count").text(a.count);
-            var msg = "<p>"+"游客说&nbsp;&nbsp;&nbsp;&nbsp;<b>"+a.data+"</b>    <br>"+a.time+"</br></p>";
+            var msg = "<p>"+event.data+"</br></p>";
             $("#msgArea").append(msg);
         }
         ws.onclose = function(event){alert("已经与服务器断开连接\r\n当前连接状态："+this.readyState);};
@@ -96,6 +92,7 @@
             return false;
         }
         ws.send(msg);
+        $("#msgArea").append("【我】"+msg);
     }
 </script>
 </body>

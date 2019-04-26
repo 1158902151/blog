@@ -39,18 +39,39 @@ class Swoole extends Command
     public function handle()
     {
 		$server = new \swoole_websocket_server("0.0.0.0", 9501);
-		$server->on('message', function (\swoole_websocket_server $server, $frame) {
-			foreach($server->connections as $key => $fd) {
-				$user_message = $frame->data;
-				$uuid    = mt_rand(1,99999);
-				$message = json_encode(array('count'=>count($server->connections),'uuid'=>$uuid,'data'=>$user_message,'time'=>date('Y-m-d H:i:s',time())));
-				$server->push($fd, $message);
-			}
 
+		$server->on('open', function (\swoole_websocket_server $server, $frame) {
+			//每一次客户端连接 最大连接数将增加
+			$message = "【欢迎 用户{$frame->fd}】：进入了聊天室";
+			echo $message."\n";
+			foreach ($server->connections as $key => $value) {
+				if($frame->fd != $value){
+					$server->push($value, $message);
+				}
+			}
 		});
 
-		$server->on('close', function ($ser, $fd) {
+		$server->on('message', function (\swoole_websocket_server $server, $frame) {
+			$fd   = $frame->fd;
+			$data = $frame->data;
+			$message = "[用户{$fd}]:{$data}";
+			//向所有人广播
+			foreach ($server->connections as $key => $value) {
+				if($frame->fd != $value){
+					$server->push($value, $message);
+				}
+			}
+		});
+
+		$server->on('close', function (\swoole_websocket_server $server, $fd) {
+			//关闭连接 连接减少
+			$message = "【用户{$fd}】：退出了聊天室";
 			echo "client {$fd} closed\n";
+			foreach ($server->connections as $key => $value) {
+				if($fd != $value){
+					$server->push($value, $message);
+				}
+			}
 		});
 
 		$server->start();
