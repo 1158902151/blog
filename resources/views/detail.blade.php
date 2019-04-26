@@ -45,11 +45,10 @@
 </div>
 <div class="footer">
     <p>
-        <span>&copy; 2018</span>
+        <span>&copy; 2019</span>
         <span><a href="http://www.layui.com" target="_blank">或许期待一次绽放</a></span>
         <span>MIT license</span>
     </p>
-    <p><span>人生就是一场修行</span></p>
 </div>
 <script src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('static/bootstrap/bootstrap.min.js') }}"></script>

@@ -12,13 +12,12 @@
     <ul class="layui-nav layui-bg-cyan">
         <li class="layui-nav-item"><a href="javascript:void(0);">云辉印象</a></li>
         <li class="layui-nav-item"><a href="/">首页</a></li>
-        <li class="layui-nav-item layui-this">
+        <li class="layui-nav-item">
             <a href="javascript:;">实战</a>
             <dl class="layui-nav-child">
                 <dd><a href="/swoole/chat">swoole socket</a></dd>
-                <dd><a href="">后台模版</a></dd>
-                <dd class="layui-this"><a href="">选中项</a></dd>
-                <dd><a href="">电商平台</a></dd>
+                <dd><a href="">消息队列</a></dd>
+                <dd><a href="">redis订阅</a></dd>
             </dl>
         </li>
     </ul>
@@ -54,11 +53,10 @@
 </div>
 <div class="footer">
     <p>
-        <span>&copy; 2018</span>
+        <span>&copy; 2019</span>
         <span><a href="http://www.layui.com" target="_blank">或许期待一次绽放</a></span>
         <span>MIT license</span>
     </p>
-    <p><span>人生就是一场修行</span></p>
 </div>
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('static/bootstrap/bootstrap.min.js') }}"></script>
