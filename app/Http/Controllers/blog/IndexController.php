@@ -70,11 +70,20 @@ class IndexController extends Controller
 	public function articleLists(Request $request)
 	{
 		$pages = $request->input('page',1);
-		$page = 5*($pages - 1);
-		$count = Articles::where('uid',16)->where('is_top',1)->count();
-		$aic_list = Articles::where('uid',16)->where('is_top',1)->orderBy('id','DESC')->offset($page)->limit(5)->get()->toArray();
+		$pageSize = $request->input('pageSize',10);
+		$page = $pageSize*($pages - 1);
 
-		$data = array('code'=>0, 'msg'=>'', 'count'=>$count, 'data'=>$aic_list);
+
+		$aic_list = Articles::where('uid',16)->where('is_top',1)->orderBy('id','DESC')->offset($page)->limit($pageSize)->get()->toArray();
+
+		$data = array('code'=>0, 'msg'=>'', 'count'=>0, 'data'=>$aic_list);
+		return response()->json($data);
+	}
+
+	public function articleCount(Request $request)
+	{
+		$count = Articles::where('uid',16)->where('is_top',1)->count();
+		$data = array('code'=>0, 'msg'=>'', 'count'=>$count, 'data'=>null);
 		return response()->json($data);
 	}
 }

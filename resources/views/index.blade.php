@@ -29,7 +29,7 @@
             <div class="contar-wrap" id="ari-list">
 
             </div>
-            <div style="display: none;" id="demo0"></div>
+            <div style="display: none;" id="demo1"></div>
         </div>
     </div>
     <div class="footer">
@@ -54,31 +54,30 @@
 
         var  total = 0;
         $.ajax({
-            url: "/article/lists",
+            url: "/article/count",
             async:false,
             type:"get",
             success: function(obj){
                 total = obj.count; //取到数据总条数
             }
         });
+
         layui.use(['laypage', 'layer'], function(){
             var laypage = layui.laypage
                 ,layer = layui.layer;
-
-            //调用分页
             laypage.render({
-                elem: 'demo0'
-                ,count: total
+                elem: 'demo1'
+                ,count: total //数据总数
                 ,jump: function(obj){
                     ii = layer.load();
                     $.ajax({
                         url: "/article/lists",
                         type:"get",
-                        data:{pageSize:5,page:obj.curr},
+                        data:{pageSize:10,page:obj.curr},
                         success: function(lists){
                             var html = "";
                             layui.each(lists.data, function(index, item){
-                               html += `<div class="item">
+                                html += `<div class="item">
                                             <div class="item-box  layer-photos-demo1 layer-photos-demo">
                                             <h3><a href="/articles/post/`+item.id+`.html">`+item.title+`</a></h3>
                                             <h5>发布于：<span>`+item.created_at+`</span></h5>
@@ -87,7 +86,7 @@
                                         </div>`;
                             });
                             $("#ari-list").html(html);
-                            $("#demo0").show();
+                            $("#demo1").show();
                             layer.close(ii)
                         }
                     });

@@ -8,5 +8,6 @@ Route::group(['namespace'=>"blog"],function(){
 	Route::get('/message/sub',"IndexController@sub");
 	Route::get('/message/push',"IndexController@push");
 	Route::get('/article/lists',"IndexController@articleLists");
+	Route::get('/article/count',"IndexController@articleCount");
 });
 
