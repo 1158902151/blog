@@ -16,8 +16,6 @@
             <a href="javascript:;">实战</a>
             <dl class="layui-nav-child">
                 <dd><a href="/swoole/chat">swoole socket</a></dd>
-                <dd><a href="">消息队列</a></dd>
-                <dd><a href="">redis订阅</a></dd>
             </dl>
         </li>
     </ul>

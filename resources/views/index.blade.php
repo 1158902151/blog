@@ -14,14 +14,11 @@
             <li class="layui-nav-item"><a href="javascript:void(0);">云辉印象</a></li>
             <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
             <li class="layui-nav-item">
-                <a href="javascript:;">实战</a>
+                <a href="javascript:;">实例</a>
                 <dl class="layui-nav-child">
                     <dd><a href="/swoole/chat">swoole socket</a></dd>
-                    <dd><a href="">消息队列</a></dd>
-                    <dd><a href="">redis订阅</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="/message">留言</a></li>
         </ul>
     </div>
     <div class="container-wrap">
