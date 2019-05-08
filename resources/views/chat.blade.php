@@ -92,7 +92,8 @@
             return false;
         }
         ws.send(msg);
-        $("#msgArea").append("【我】"+msg);
+        var msgs = "<p>【我】"+msg+"</br></p>";
+        $("#msgArea").append(msgs);
     }
 </script>
 </body>
