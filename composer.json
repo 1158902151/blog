@@ -10,11 +10,9 @@
         "jacobcyl/ali-oss-storage": "dev-master",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "php-amqplib/php-amqplib": "^2.8",
         "predis/predis": "^1.1"
     },
     "require-dev": {
-        "deployer/deployer": "^6.4",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
